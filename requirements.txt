@@ -1,0 +1,5 @@
+numpy
+scipy
+scikit-optimize
+pandas
+psycopg2-binary
