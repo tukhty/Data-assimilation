@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from financial_model import BatchEconomics
 from collections import OrderedDict as OD
