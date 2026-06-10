@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: bioprotein_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: bioprotein
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    image: python:3.11-slim
+    container_name: bioprotein_app
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=postgresql://admin:password123@postgres:5432/bioprotein
+      - N8N_API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6S... (truncated)
+    depends_on:
+      - postgres
+    command: tail -f /dev/null
+
+volumes:
+  pgdata:
